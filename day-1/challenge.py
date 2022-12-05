@@ -28,7 +28,7 @@ def parse_input(lines):
     
     return elf
 
-def elf_carrying_most(elfs):
+def elf_carrying_most(elfs, top = 1):
     total_i, total = 0, [0]
 
     for elf in elfs:
@@ -40,10 +40,9 @@ def elf_carrying_most(elfs):
     
     total.sort()
 
-    return total[len(total) - 1]
+    return total[len(total) - top:]
     
-
-
+    
 if __name__ == "__main__":
     filename = "input"
     input = load_input(filename)
@@ -52,6 +51,9 @@ if __name__ == "__main__":
         print("Could not load from %s: %s" % (filename, input)) 
     else:
         elfs = parse_input(input)
-        most = elf_carrying_most(elfs)
-        print(most)
+        top_most = elf_carrying_most(elfs)
+        print(top_most)
+
+        top_three_most = elf_carrying_most(elfs, 3)
+        print(sum(top_three_most))
 
